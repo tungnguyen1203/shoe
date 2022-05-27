@@ -1,0 +1,93 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="dropdown">
+          <span class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+            aria-expanded="false">
+            Dropdown
+          </span>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button">Action</button>
+            <button class="dropdown-item" type="button">Another action</button>
+            <button class="dropdown-item" type="button">Something else here</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-9">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="nav">Sắp xếp theo</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Mới nhất <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Sản phẩm bán chạy</a>
+              </li>
+              <li class="nav-item active dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-expanded="false">
+                  Giá
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+
+            </ul>
+
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-3">
+
+      </div>
+      <div class="col-9 ">
+        <div class="row">
+          <% @products.each do |product| %>
+          <div class="col mb-5">
+            <div class="card h-100">
+              <!-- Sale badge-->
+              <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                Sale
+              </div>
+              <!-- Product image-->
+              <%= link_to image_tag(product.image,  size: '180x120') , class: "card-img-top" %>
+              <!-- Product details-->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="fw-bolder"> <%= link_to product.name, product %></h5>
+                  <!-- Product price-->
+                  <span class="text-muted text-decoration-line-through"></span>
+                  <%=  product.price %>
+                </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                  <a class="btn btn-outline-dark mt-auto border-0 text-light" style="background-color: orangered"
+                    href="#">Thêm vào giỏ</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
