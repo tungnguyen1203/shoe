@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/tungnt/Documents/shoe/app/views/products/_allproduct.html.erb:80 #<Class:0x00007fa3bc72f6e8>#_app_views_products__allproduct_html_erb___4065211407119446470_30440:
+
+    [1;34m75[0m:                 </div>
+    [1;34m76[0m:               </div>
+    [1;34m77[0m:             </div>
+    [1;34m78[0m:           </div>
+    [1;34m79[0m:           <% end %>
+ => [1;34m80[0m:           <%= binding.pry %>
+    [1;34m81[0m:           <%= paginate @products %>
+    [1;34m82[0m:         </div>
+    [1;34m83[0m:       </div>
+    [1;34m84[0m:       
+    [1;34m85[0m:     </div>
+
