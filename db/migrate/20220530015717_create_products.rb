@@ -8,7 +8,6 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.string  :color
       t.string  :description
       t.boolean :status
-
       t.timestamps
     end
   end
