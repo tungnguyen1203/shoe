@@ -2,14 +2,15 @@ class ProductsController < ApplicationController
 
   def show
     @q = Product.ransack(params[:q])
+    @products = @q.result(distinct: true).page( params[:page]).per(6)
     @products = Product.find(params[:id])
   end
 
   def index
+    
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).page( params[:page]).per(6)
+    # @order_detail = OrderDetail.new
   end
-  
-  
   
 end

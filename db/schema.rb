@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_01_023909) do
+ActiveRecord::Schema.define(version: 2022_06_03_063321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -25,12 +30,14 @@ ActiveRecord::Schema.define(version: 2022_06_01_023909) do
     t.float "price"
     t.integer "quantity"
     t.string "status"
-    t.bigint "products_id"
-    t.bigint "orders_id"
+    t.bigint "product_id"
+    t.bigint "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["orders_id"], name: "index_order_details_on_orders_id"
-    t.index ["products_id"], name: "index_order_details_on_products_id"
+    t.bigint "cart_id"
+    t.index ["cart_id"], name: "index_order_details_on_cart_id"
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.index ["product_id"], name: "index_order_details_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -44,7 +51,7 @@ ActiveRecord::Schema.define(version: 2022_06_01_023909) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "image"
-    t.integer "price"
+    t.float "price"
     t.integer "size"
     t.string "color"
     t.string "description"
@@ -61,10 +68,21 @@ ActiveRecord::Schema.define(version: 2022_06_01_023909) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "order_details", "orders", column: "orders_id"
-  add_foreign_key "order_details", "products", column: "products_id"
+  add_foreign_key "order_details", "carts"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "products"
   add_foreign_key "orders", "users", column: "users_id"
   add_foreign_key "products", "categories", column: "categories_id"
 end

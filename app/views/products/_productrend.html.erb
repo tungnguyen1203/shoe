@@ -1,0 +1,36 @@
+<div class="row mt-4">
+  <div class="col">
+    <p>Gợi ý cho bạn</p>
+  </div>
+</div>
+<div class="row  justify-content-center">
+  <% @produc_trend.each do |product| %>
+    <div class="col mb-2">
+      <div class="card h-100" style="width:250px">
+        <!-- Sale badge-->
+        <div class="badge bg-danger text-white position-absolute ">
+          <span>Sale</span>
+        </div>
+        <!-- Product image-->
+        <%=  image_tag(product.image)  %>
+        <!-- Product details-->
+        <div class="card-body p-2">
+          <div class="text-center">
+            <!-- Product name-->
+            <h5 class="fw-bolder"> <%= link_to product.name, product, class:"font-weight-bold" %></h5>
+            <!-- Product price-->
+            <span class="text-muted text-decoration-line-through"></span>
+            <%=  product.price %>
+          </div>
+        </div>
+        <!-- Product actions-->
+        <div class="card-footer p-2 pt-0 border-top-0 bg-transparent">
+          <div class="text-center">
+            <a class="btn btn-outline-dark mt-auto border-0 text-light" style="background-color: orangered"
+                  href="#">Thêm vào giỏ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

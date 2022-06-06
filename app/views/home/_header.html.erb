@@ -1,4 +1,4 @@
-<header class="nav" style="background-color: #F9593F">
+<header class="nav sticky-top " style="background-color: #F9593F">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -10,7 +10,6 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
@@ -22,34 +21,42 @@
               <li class="nav-item active">
                 <%= link_to 'Contact', contact_path, class: 'nav-link' %>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
+
             </ul>
             <div class="form-inline my-2 my-lg-0 d-flex">
               <ul class="navbar-nav">
-                  <%= render 'layouts/search'%>
+                <%= render 'products/search'%>
                 <li class="nav-item">
                   <button class="btn btn-outline-light" href="#" style="background-color:#F9593F">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <span class="badge text-white ms-1 rounded-pill">0</span>
+                    <%= link_to cart_path(@current_cart),  {:style=>'color:#FFFFFF;', :class => "css_class"}   do %>
+                    <i class="fa fa-shopping-cart"></i>
+
+                    <span class="badge text-white ms-1 rounded-pill">
+                    <%= render 'home/cartheader' %>
+                    </span>
+                    <% end %>
                   </button>
                 </li>
+                <% if user_signed_in? %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <%= current_user.user_name %>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <%= link_to "Trang cá nhân",  edit_user_registration_path, class:"dropdown-item" %>
+                    <div class="dropdown-divider"></div>
+                   <%= link_to "Đăng xuất", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+                  </div>
+                </li>
+                <% else %>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Đăng nhập </a>
+                  <%= link_to "Đăng kí", new_user_registration_path, class:"nav-link active" %>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Đăng kí </a>
+                  <%= link_to "Đăng nhập",  new_user_session_path, class:"nav-link active" %>
                 </li>
+                <% end %>
               </ul>
             </div>
           </div>

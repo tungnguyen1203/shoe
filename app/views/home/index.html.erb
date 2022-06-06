@@ -16,7 +16,11 @@
 </head>
 
 <body>
-  <header>
+  <%= render 'home/header' %>
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <div>
     <div class="container ">
       <div class="row">
         <div class="col">
@@ -35,16 +39,14 @@
               </div>
 
             </div>
-            <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls"
-              data-slide="prev">
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-target="#carouselExampleControls"
-              data-slide="next">
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -52,7 +54,7 @@
 
     </div>
 
-  </header>
+  </div>
 
   <section>
     <div class="container">
@@ -99,47 +101,13 @@
           </nav>
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col">
-          <p>Gợi ý cho bạn</p>
-        </div>
-      </div>
-      <div class="row  justify-content-center">
-        <% @productrend.each do |product| %>
-        <div class="col mb-2">
-          <div class="card h-100" style="width:250px">
-            <!-- Sale badge-->
-            <div class="badge bg-danger text-white position-absolute ">
-              <span>Sale</span>
-            </div>
-            <!-- Product image-->
-            <%=  image_tag(product.image)  %>
-            <!-- Product details-->
-            <div class="card-body p-2">
-              <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder"> <%= link_to product.name, product, class:"font-weight-bold" %></h5>
-                <!-- Product price-->
-                <span class="text-muted text-decoration-line-through"></span>
-                <%=  product.price %>
-              </div>
-            </div>
-            <!-- Product actions-->
-            <div class="card-footer p-2 pt-0 border-top-0 bg-transparent">
-              <div class="text-center">
-                <a class="btn btn-outline-dark mt-auto border-0 text-light" style="background-color: orangered"
-                  href="#">Thêm vào giỏ</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <% end %>
-        
-      </div>
+      <%= render 'products/productrend' %>
     </div>
     </div>
   </section>
   <%= render 'products/allproduct' %>
+  <%= render 'home/footer' %>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
   </script>

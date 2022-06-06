@@ -9,18 +9,15 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   Danh mục
                 </a>
-                
               </li>
             </ul>
           </div>
         </nav>
-
       </div>
       <div class="col-9">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,7 +26,6 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item ">
@@ -41,9 +37,7 @@
               <li class="nav-item  ">
                 <%= content_tag :a, sort_link(@q, :price, "Giá",style:"color: #7F9095"), class: "dropdown-item" %>
               </li>
-
             </ul>
-
           </div>
         </nav>
       </div>
@@ -54,7 +48,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
-                <a class="dropdown-item" href="#">Giày Thể  thao</a>
+                <a class="dropdown-item" href="#">Giày Thể thao</a>
                 <a class="dropdown-item" href="#">Giày abc</a>
                 <a class="dropdown-item" href="#">Giày xyz</a>
               </li>
@@ -65,6 +59,7 @@
       <div class="col-9">
         <div class="row">
           <% @products.each do |product| %>
+
           <div class="col mb-2">
             <div class="card h-100" style="width:250px">
               <!-- Sale badge-->
@@ -85,20 +80,22 @@
               </div>
               <!-- Product actions-->
               <div class="card-footer p-2 pt-0 border-top-0 bg-transparent">
+                <%= form_for @order_detail do |f| %>
                 <div class="text-center">
-                  <a class="btn btn-outline-dark mt-auto border-0 text-light" style="background-color: orangered"
-                    href="#">Thêm vào giỏ</a>
+                  <%= f.hidden_field :quantity, value: 1 %>
+                  <%= f.hidden_field :product_id, value: product.id %>
+                  <%= f.hidden_field :price, value: product.price %>
+                  <%= f.submit "add to cart",class:"btn btn-primary" %>
                 </div>
+                <% end %>
               </div>
             </div>
           </div>
+
           <% end %>
           <%= paginate @products %>
         </div>
       </div>
-
     </div>
-
   </div>
-
 </section>
