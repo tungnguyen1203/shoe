@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2022_06_03_063321) do
   end
 
   create_table "order_details", force: :cascade do |t|
-    t.float "price"
-    t.integer "quantity"
+    t.integer "price"
+    t.integer "quantity", default: 1
     t.string "status"
     t.bigint "product_id"
     t.bigint "order_id"
@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(version: 2022_06_03_063321) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "users_id"
-    t.index ["users_id"], name: "index_orders_on_users_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "image"
-    t.float "price"
+    t.integer "price"
     t.integer "size"
     t.string "color"
     t.string "description"
@@ -83,6 +83,6 @@ ActiveRecord::Schema.define(version: 2022_06_03_063321) do
   add_foreign_key "order_details", "carts"
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "products"
-  add_foreign_key "orders", "users", column: "users_id"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories", column: "categories_id"
 end

@@ -1,0 +1,10 @@
+
+<% @orders.each do |order| %>
+  <p>address<%= order.address %></p>
+  <ul>
+    <% order.order_details.each do |order_detail| %>
+      <li><%= order_detail.quantity%> x <%= order_detail.product.price%></li>
+    <% end %>
+    <%= order.sub_total%>
+  </ul>
+<% end %>

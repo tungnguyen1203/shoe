@@ -7,10 +7,10 @@ class ProductsController < ApplicationController
   end
 
   def index
-    
+    @order_detail = OrderDetail.new
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).page( params[:page]).per(6)
-    # @order_detail = OrderDetail.new
+    
   end
   
 end

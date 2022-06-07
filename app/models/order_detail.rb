@@ -4,7 +4,7 @@ class OrderDetail < ApplicationRecord
   belongs_to :cart
 
   def total_price
-    quantity * price
+    self.quantity * self.product.price
   end
 
 end

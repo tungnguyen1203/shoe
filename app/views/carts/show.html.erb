@@ -12,31 +12,26 @@
             <td class="nav-item" scope="col">Thành tiền</td>
           </tr>
           <tbody>
-            
             <% @cart.order_details.each  do |order_detail| %>
-            <tr>
-              <th scope="row"><input type="checkbox" /></th>
-              <td>
-              
-                <%# <img src="https://cf.shopee.vn/file/82f6619ff0461a71670a7aef8fecefe7_tn" alt=""
-                    class="img-thumbnail mr-2" width="50px" height="40" />giày xịn %>
-                <%=  image_tag(order_detail.product.image, size: '50x40', class:"img-thumbnail mr-2")  %>
-                <%= order_detail.product.name  %>
-              </td>
-              <td><%= order_detail.product.price  %></td>
-              <td style="width:20%">
-               
+              <tr>
+                <th scope="row"><input type="checkbox" /></th>
+                <td>
+                  <%=  image_tag(order_detail.product.image, size: '50x40', class:"img-thumbnail mr-2")  %>
+                  <%= order_detail.product.name  %>
+                </td>
+                <td><%= order_detail.product.price  %></td>
+                <td style="width:20%">
+                  <input type="number" aria-label="Last name" value="<%= order_detail.quantity %>" class="form-control"
+                    style="width:30%" value=1 min=1>
+                </td>
+                <th scope="row">
+                  <%= order_detail.total_price %>
+                </th>
+                <th scope="row">
+                  <%=link_to "Xóa", order_detail_path(order_detail), method: :delete, class:"btn btn-danger" %>
+                </th>
 
-              <input type="number" aria-label="Last name" value="<%= order_detail.quantity %>" class="form-control" style="width:30%" value=1 min=1>
-              </td>
-              <th scope="row">
-                <%= order_detail.total_price %>
-              </th>
-              <th scope="row">
-                <%=link_to "Xóa", order_detail_path(order_detail), method: :delete, class:"btn btn-danger" %>
-              </th>
-
-            </tr>
+              </tr>
             <% end %>
           </tbody>
         </table>
@@ -46,7 +41,7 @@
       <div class="col-7">
       </div>
       <div class="col-5 d-flex">
-      
+
         <p class="mr-2">Tổng thanh toán: <%= @cart.sub_total%></p>
         <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
           <li class="nav-item active">
@@ -54,7 +49,11 @@
               <%= link_to products_path do %>
               <button class="btn btn-outline-success mr-2" type="submit">Mua Thêm</button>
               <% end %>
-              <button class="btn btn-outline-success" type="submit">Mua hàng</button>
+              <% if user_signed_in? %>
+              <%= link_to "Mua hàng", new_order_path, class:"btn btn-outline-success"%>
+              <% else %>
+              <%=link_to "mua di", user_session_path %>
+              <% end %>
             </form>
           </li>
         </ul>

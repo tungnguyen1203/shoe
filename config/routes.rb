@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   post 'order_details' => "order_details#create"
   resources :orders
   resources :carts
+  # resources :check_out
+  post 'check_out/create',to: "check_out#create"
+  
 end
