@@ -14,8 +14,8 @@ class OrdersController < ApplicationController
   
   def create
     @order = Order.new(order_params)
-    @current_cart.line_items.each do |item|
-      @order.line_items << item
+    @current_cart.order_details.each do |item|
+      @order.order_details << item
       item.cart_id = nil
     end
     @order.save

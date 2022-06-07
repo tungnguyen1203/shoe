@@ -54,7 +54,7 @@
               <%= link_to products_path do %>
               <button class="btn btn-outline-success mr-2" type="submit">Mua Thêm</button>
               <% end %>
-              <button class="btn btn-outline-success" type="submit">Mua hàng</button>
+              <%= link_to "Mua hàng", new_order_path, class:"btn btn-outline-success"%>
             </form>
           </li>
         </ul>
