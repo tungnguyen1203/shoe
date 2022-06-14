@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   get  "/contact", to: "home#contact"
   resources :products
   resources :home
+  namespace :admin do
+    resources :dashboard
+  end
   resources :order_details
   post 'order_details' => "order_details#create"
   resources :orders
   resources :carts
-  # resources :check_out
-  post 'check_out/create',to: "check_out#create"
+  
   
 end
