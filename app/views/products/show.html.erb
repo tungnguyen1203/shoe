@@ -4,7 +4,7 @@
    
     <div class="col-md-12" style="display: flex;">
       <div class="list-img-gr">
-        <%= image_tag(@products.image) %>
+        <%= image_tag(@products.image.url, alt: 'Image') if @products.image? %>
       </div>
       <div class="list-text-gr" style="padding: 10px;">
         <p><%= @products.name %></p>

@@ -12,7 +12,7 @@
           <span>Sale</span>
         </div>
         <!-- Product image-->
-        <%=  image_tag(product.image)  %>
+        <%= image_tag(product.image.url, alt: 'Image') if product.image? %>
         <!-- Product details-->
         <div class="card-body p-2">
           <div class="text-center">

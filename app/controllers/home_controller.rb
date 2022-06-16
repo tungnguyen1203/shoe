@@ -5,6 +5,7 @@ class HomeController < ApplicationController
     @products = @q.result(distinct: true).page(params[:page]).per(6)
     @produc_trend = Product.all.order("RANDOM()").page(params[:page]).per(4)
     @order_detail = OrderDetail.new
+    @categories = Category.all
   end
 
   

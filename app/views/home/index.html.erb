@@ -50,12 +50,8 @@
           </div>
         </div>
       </div>
-
-
     </div>
-
   </div>
-
   <section>
     <div class="container">
       <div class="row">
@@ -68,21 +64,12 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
+              <% @categories.each do |category| %>
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Giày thể thao <span class="sr-only">(current)</span></a>
+                  <a class="nav-link active" href="#"><%= category.name %></a>
+                  
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="#">Giày lười</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Giày thể thao <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Giày thể thao <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Giày thể thao <span class="sr-only">(current)</span></a>
-                </li>
+              <% end %>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-expanded="false">

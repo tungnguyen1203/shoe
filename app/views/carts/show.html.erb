@@ -15,19 +15,19 @@
             <% @cart.order_details.each  do |order_detail| %>
               <tr>
                 <th scope="row"><input type="checkbox" /></th>
-                <td>
-                  <%=  image_tag(order_detail.product.image, size: '50x40', class:"img-thumbnail mr-2")  %>
+                <td class="align-middle ">
+                  <%= image_tag(order_detail.product.image.url, alt: 'Image',size: '50x40', class:"img-thumbnail mr-2") %>
                   <%= order_detail.product.name  %>
                 </td>
-                <td><%= order_detail.product.price  %></td>
-                <td style="width:20%">
+                <td class="align-middle text-center"><%= order_detail.product.price  %></td>
+                <td class="align-middle text-center" style="width:20%">
                   <input type="number" aria-label="Last name" value="<%= order_detail.quantity %>" class="form-control"
                     style="width:30%" value=1 min=1>
                 </td>
-                <th scope="row">
+                <th class="align-middle text-center" scope="row">
                   <%= order_detail.total_price %>
                 </th>
-                <th scope="row">
+                <th class="align-middle text-center" scope="row">
                   <%=link_to "Xóa", order_detail_path(order_detail), method: :delete, class:"btn btn-danger" %>
                 </th>
 

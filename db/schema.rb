@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 2022_06_03_063321) do
     t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "categories_id"
-    t.index ["categories_id"], name: "index_products_on_categories_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -84,5 +84,5 @@ ActiveRecord::Schema.define(version: 2022_06_03_063321) do
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "products"
   add_foreign_key "orders", "users"
-  add_foreign_key "products", "categories", column: "categories_id"
+  add_foreign_key "products", "categories"
 end

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :home
   namespace :admin do
     resources :dashboard
+    resources :products
+    resources :categories
+    resources :orders
   end
   resources :order_details
   post 'order_details' => "order_details#create"

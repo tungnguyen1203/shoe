@@ -9,5 +9,6 @@
     "css": ["css", "scss"],
     "html": ["htm", "html", "erb"] //"erb"Add
     // ^^ providing just an array sets the VS Code file type
-  }
+  },
+  "liveServer.settings.port": 5501
 }

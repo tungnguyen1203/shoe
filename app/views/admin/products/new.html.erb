@@ -1,0 +1,21 @@
+<div class="container-fluid sb-nav-fixed">
+
+  <%= render 'admin/dashboard/top_nav' %>
+  <div id="layoutSidenav">
+    <%= render 'admin/dashboard/layout_side_nav' %>
+    <div id="layoutSidenav_content">
+      <%= render 'products_content' %>
+      <%= render 'admin/dashboard/footer' %>
+    </div>
+  </div>
+</div>
+
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('thumbnail-img');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+</script>

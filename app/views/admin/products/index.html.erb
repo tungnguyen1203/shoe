@@ -1,0 +1,56 @@
+<div class="container-fluid sb-nav-fixed">
+  <%= render 'admin/dashboard/top_nav' %>
+  <div id="layoutSidenav">
+    <%= render 'admin/dashboard/layout_side_nav' %>
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+         <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <% end %>
+          <div class="row mt-4">
+            <div class="col">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Hình ảnh</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Màu</th>
+                    <th scope="col">Mô tả</th>
+                    <th scope="col">Loại sản phẩm</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @products.each_with_index do |product, index| %>
+                  <tr>
+                    <th scope="row"><%= index +1 %></th>
+                    <td><%= product.name %></td>
+                    <td><%= product.price %></td>
+                    <td><%= image_tag(product.image.url,size:'50x40', alt: 'Image') if product.image? %></td>
+                    <td><%= product.size %></td>
+                    <td><%= product.color %></td>
+                    <td><%= product.description %></td>
+                    <td><%= product.category.name %></td>
+                    <td>
+                      <%=link_to  admin_product_path(product), method: :delete,data: { confirm: "Are you sure?" }, class:"btn btn-outline-danger" do %>
+                      <i class="fa-solid fa-trash-can"></i>
+                      <% end %>
+                      <%=link_to  edit_admin_product_path(product), class:"btn btn-outline-warning" do %>
+                      <i class="fa-solid fa-pen-to-square"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+      <%= render 'admin/dashboard/footer' %>
+    </div>
+  </div>
+</div>

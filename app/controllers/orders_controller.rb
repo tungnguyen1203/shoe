@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
     charge = Stripe::Charge.create({
       amount: @current_cart.sub_total,
       currency: 'usd',
-      source: 'tok_mastercard',
+      source: 'tok_visa',
       description: 'My First Test Charge (created for API docs at https://www.stripe.com/docs/api)',
     })
     Cart.destroy(session[:cart_id])
@@ -38,7 +38,6 @@ class OrdersController < ApplicationController
   private
 
     def order_params
-      
       params.require(:order).permit(:address, :user_id)
     end
 end

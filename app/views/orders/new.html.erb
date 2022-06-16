@@ -42,6 +42,7 @@
         <div class="col-12">
           <label for="address" class="form-label">Địa chỉ nhận hàng</label>
           <%= order.text_field :address, required: true, autofocus: true,class:"form-control" %>
+          
           <%= order.hidden_field :user_id, value: current_user.id  %>
           <div class="invalid-feedback">
             Please enter your shipping address.
@@ -85,4 +86,5 @@
 
   var paymentElement = elements.create('card');
   paymentElement.mount("#card");
+ 
 </script>
