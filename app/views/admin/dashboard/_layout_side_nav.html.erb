@@ -33,15 +33,15 @@
           <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
           Quản lí loại sản phẩm
         <% end %>
-        <a class="nav-link" href="#">
+        <%=link_to admin_customers_path ,class:"nav-link" do %>
           <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
           Khách hàng
-        </a>
+        <% end %>
         <div class="sb-sidenav-menu-heading">Interface</div>
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
           aria-expanded="false" aria-controls="collapsePages">
           <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-          Pages
+          Thống kê
           <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
         </a>
         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
@@ -77,17 +77,19 @@
         <div class="sb-sidenav-menu-heading">Addons</div>
         <a class="nav-link" href="charts.html">
           <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-          Charts
+          Số liệu
         </a>
         <a class="nav-link" href="tables.html">
           <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-          Tables
+          Bảng 
         </a>
       </div>
     </div>
     <div class="sb-sidenav-footer">
-      <div class="small">Logged in as:</div>
-      Start Bootstrap
+      <div class="small">Tài khoản đang đăng nhập:</div>
+        <% if user_signed_in? %>
+          <%= current_user.user_name %>
+        <% end %>
     </div>
   </nav>
 </div>

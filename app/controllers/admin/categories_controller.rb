@@ -11,8 +11,9 @@ class Admin::CategoriesController < ApplicationController
       flash[:success] = "Đã Thêm!"
       redirect_to new_admin_category_path
     else
-      flash[:error] = "Something went wrong"
-      render 'new'
+      flash[:error] = "Loại sản phẩm chưa được tạo!"
+      @categories = Category.all
+      render :new
     end
   end
   
@@ -29,22 +30,21 @@ class Admin::CategoriesController < ApplicationController
   
   def edit
     @category = Category.find(params[:id])
-    # redirect_to new_admin_category_path
   end
   
   def update
-   
     @category = Category.find(params[:id])
       if @category.update(category_params)
         flash[:success] = "Đã chỉnh sửa! "
         redirect_to new_admin_category_path
       else
-        flash[:error] = "Something went wrong"
+        flash[:error] = "Loại sản phẩm chưa được cập nhật"
         render 'edit'
       end
   end
   
   private
+
     def category_params
       params.require(:category).permit(:name)
     end

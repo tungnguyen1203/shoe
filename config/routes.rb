@@ -11,11 +11,13 @@ Rails.application.routes.draw do
     resources :products
     resources :categories
     resources :orders
+    resources :customers
   end
   resources :order_details
   post 'order_details' => "order_details#create"
+  post 'order_details/:id/add' => "order_details#add_quantity", as: "order_detail_add"
+  post 'order_details/:id/reduce' => "order_details#reduce_quantity", as: "order_detail_reduce"
   resources :orders
   resources :carts
-  
   
 end

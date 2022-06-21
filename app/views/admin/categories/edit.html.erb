@@ -5,12 +5,24 @@
     <div id="layoutSidenav_content">
       <main>
         <div class="container-fluid px-4">
+          <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <% end %>
           <div class="row mt-4">
             <div class="col-6">
               <%= form_for @category, url: admin_category_path do |f| %>
+              <% if @category.errors.any? %>
+              <div id="error_explanation">
+                <ul>
+                  <% @category.errors.full_messages.each do |msg| %>
+                  <li class="alert-danger"><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+              <% end %>
               <div class="form-group">
                 <label>Loại sản phẩm</label>
-                <%= f.text_field :name,required: true, autofocus: true, class:"form-control" %>
+                <%= f.text_field :name, class:"form-control" %>
                 <small id="emailHelp" class="form-text text-muted">Chỉnh sửa loại sản phẩm</small>
               </div>
               <button type="submit" class="btn btn-primary">Lưu </button>

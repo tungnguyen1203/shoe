@@ -1,3 +1,5 @@
+<% provide(:title, "Danh sách sản phẩm") %>
+
 <div class="container-fluid sb-nav-fixed">
   <%= render 'admin/dashboard/top_nav' %>
   <div id="layoutSidenav">
@@ -35,7 +37,7 @@
                     <td><%= product.description %></td>
                     <td><%= product.category.name %></td>
                     <td>
-                      <%=link_to  admin_product_path(product), method: :delete,data: { confirm: "Are you sure?" }, class:"btn btn-outline-danger" do %>
+                      <%=link_to  admin_product_path(product), method: :delete,data: { confirm: "Bạn chắc chưa?" }, class:"btn btn-outline-danger" do %>
                       <i class="fa-solid fa-trash-can"></i>
                       <% end %>
                       <%=link_to  edit_admin_product_path(product), class:"btn btn-outline-warning" do %>

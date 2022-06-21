@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
   belongs_to :user
+  validates :address, presence: true
   def sub_total
     sum = 0
     order_details.each do |order_detail|

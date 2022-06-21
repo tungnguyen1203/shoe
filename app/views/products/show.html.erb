@@ -1,31 +1,39 @@
+<% provide(:title, "Chi tiết Sản phẩm") %>
 <%= render 'home/header' %>
 <div class="container">
   <div class="row mt-4">
    
     <div class="col-md-12" style="display: flex;">
       <div class="list-img-gr">
-        <%= image_tag(@products.image.url, alt: 'Image') if @products.image? %>
+        <%= image_tag(@products.image.url, alt: 'Image',size: "200x200")  if @products.image? %>
       </div>
       <div class="list-text-gr" style="padding: 10px;">
-        <p><%= @products.name %></p>
-        <p style="font-size: 20px;"><b><%= @products.price %>VND</b></p>
-        <div class="input-group mb-6" style="width: 25%">
-          <div class="mr-2"><span>Số lượng</span></div>
+        <h4><%= @products.name %></h4>
+        <p style="font-size: 20px;"><b><%= @products.price %>đ</b></p>
+        <div class="input-group mb-6" style="width: 35%">
+          <div class="me-2"><span>Số lượng</span></div>
           
           <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="1" min=1 >
           
         </div>
         <div class="mt-2 ">
-          <a class="btn btn-dark border-0 text-light" style="background-color: orangered;" type="submit" ,>Thêm vào giỏ hàng</a>
-          <a class="btn btn-dark border-0 text-light" style="background-color: orangered;" type="submit">Mua ngay</a>
+          <%= button_to "Thêm vào giỏ", order_details_path(product_id: @products.id),
+                  class:"btn btn-outline-dark mt-auto border-0 text-light", style:"background-color: orangered" %>
         </div>
       </div>
     </div>
   </div>
   <div class="row mt-4">
    
-    <div class="col-md-12" style="display: flex;">
-      <%= @products.color %>
+    <div class="col-md-12">
+      <p >Màu: <%= @products.color %></p>
+      
+      <p >Size: <%= @products.size %></p>
+       
+    </div>
+    <div class="col-md-12">
+    <p >Mô tả:</p>
+      <%= @products.description %>
     </div>
   </div>
 </div>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container">
+        <%= link_to  root_path, class: 'nav-link' do %>
+          <%= image_tag("logo.png", size: "50x50", alt: "Edit Entry") %>
+          <% end %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <%= link_to 'Sản phẩm', products_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to 'Liên hệ', contact_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Giới thiệu</a>
+            </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0 d-flex">
+            <ul class="navbar-nav">
+              <%= render 'products/search'%>
+              <li class="nav-item">
+                <button class="btn btn-outline-light" href="#" style="background-color:#F9593F">
+                  <%= link_to cart_path(@current_cart),  {:style=>'color:#FFFFFF;', :class => "css_class"}   do %>
+                  <i class="fa fa-shopping-cart"></i>
+
+                  <span class="badge text-white ms-1 rounded-pill">
+                    <%= render 'home/cart_header' %>
+                  </span>
+                  <% end %>
+                </button>
+              </li>
+              <% if user_signed_in? %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <%= current_user.user_name %>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to "Trang cá nhân",  edit_user_registration_path, class:"dropdown-item" %>
+                  <%= link_to "Lịch sử  order",  orders_path, class:"dropdown-item" %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "Đăng xuất", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+                </div>
+              </li>
+              <% else %>
+              <li class="nav-item">
+                <%= link_to "Đăng kí", new_user_registration_path, class:"nav-link active" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Đăng nhập",  new_user_session_path, class:"nav-link active" %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

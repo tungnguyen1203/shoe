@@ -1,4 +1,6 @@
+<%= redender "home/header" %>
 <%= @order.current_cart do |item| %>
   
 <% end %>
 <p><%= @orders.address %></p>
+<%= render "home/footer" %>

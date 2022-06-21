@@ -7,34 +7,40 @@
     <div class="row">
       <div class="col-xl-3 col-md-6">
         <div class="card bg-primary text-white mb-4">
-          <div class="card-body">Primary Card</div>
+          <div class="card-body">Sản phẩm <%= @products %></div>
+           <%=link_to admin_products_path  do %>
           <div class="card-footer d-flex align-items-center justify-content-between">
-            <a class="small text-white stretched-link" href="#">View Details</a>
-            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+              <p class="small text-white stretched-link">Xem chi tiết</p>
+              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
           </div>
+          <% end %>
         </div>
       </div>
       <div class="col-xl-3 col-md-6">
         <div class="card bg-warning text-white mb-4">
-          <div class="card-body">Warning Card</div>
+          <div class="card-body">Đơn hàng <%= @orders %></div>
+          <%=link_to admin_orders_path  do %>
           <div class="card-footer d-flex align-items-center justify-content-between">
-            <a class="small text-white stretched-link" href="#">View Details</a>
+            <p styles="text-decoration: none" class="small text-white stretched-link">Xem chi tiết</p>
             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
           </div>
+          <% end %>
         </div>
       </div>
       <div class="col-xl-3 col-md-6">
         <div class="card bg-success text-white mb-4">
-          <div class="card-body">Success Card</div>
+          <div class="card-body">Loại sản phẩm <%= @categories %></div>
+          <%=link_to new_admin_category_path,styles:"text-decoration: none"  do %>
           <div class="card-footer d-flex align-items-center justify-content-between">
-            <a class="small text-white stretched-link" href="#">View Details</a>
+            <p  class="small text-white stretched-link" >Xem chi tiết</p>
             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
           </div>
+          <% end %>
         </div>
       </div>
       <div class="col-xl-3 col-md-6">
         <div class="card bg-danger text-white mb-4">
-          <div class="card-body">Danger Card</div>
+          <div class="card-body">Thống kê</div>
           <div class="card-footer d-flex align-items-center justify-content-between">
             <a class="small text-white stretched-link" href="#">View Details</a>
             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -47,7 +53,7 @@
         <div class="card mb-4">
           <div class="card-header">
             <i class="fas fa-chart-area me-1"></i>
-            Area Chart Example
+           Biểu đồ 1
           </div>
           <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
         </div>
@@ -56,7 +62,7 @@
         <div class="card mb-4">
           <div class="card-header">
             <i class="fas fa-chart-bar me-1"></i>
-            Bar Chart Example
+            Biểu đồ 2
           </div>
           <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
         </div>
@@ -65,7 +71,7 @@
     <div class="card mb-4">
       <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        DataTable Example
+        Thông tin người dùng
       </div>
       <div class="card-body">
         <table id="datatablesSimple">

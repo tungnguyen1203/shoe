@@ -1,67 +1,73 @@
-<header class="nav sticky-top " style="background-color: #F9593F">
+<div class="nav sticky-top " style="background-color: #F9593F">
   <div class="container">
-    <div class="row">
-      <div class="col">
         <nav class="navbar navbar-expand-lg navbar-dark">
-           <%= link_to  root_path, class: 'nav-link' do %>
-            <%= image_tag("logo.png", size: "50x50", alt: "Edit Entry") %>
+      <div class="container">
+        <%= link_to  root_path, class: 'nav-link' do %>
+          <%= image_tag("logo.png", size: "50x50", alt: "Edit Entry") %>
           <% end %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-             
-              <li class="nav-item active">
-                <%= link_to 'Sản phẩm', products_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item active">
-                <%= link_to 'Liên hệ', contact_path, class: 'nav-link' %>
-              </li>
-               <li class="nav-item active">
-               <a class="nav-link" href="#">Giới thiệu</a>
-              </li>
-            </ul>
-            <div class="form-inline my-2 my-lg-0 d-flex">
-              <ul class="navbar-nav">
-                <%= render 'products/search'%>
-                <li class="nav-item">
-                  <button class="btn btn-outline-light" href="#" style="background-color:#F9593F">
-                    <%= link_to cart_path(@current_cart),  {:style=>'color:#FFFFFF;', :class => "css_class"}   do %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <%= link_to 'Sản phẩm', products_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to 'Liên hệ', contact_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Giới thiệu</a>
+            </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0 d-flex">
+            <ul class="navbar-nav">
+              <%= render 'products/search'%>
+              <li class="nav-item">
+                <button class="btn btn-outline-light" href="#" style="background-color:#F9593F">
+              
+                
+                <% if @current_user.present? %>
+                  <%= link_to cart_path(@current_cart),  {:style=>'color:#FFFFFF;', :class => "css_class"}   do %>
                     <i class="fa fa-shopping-cart"></i>
 
                     <span class="badge text-white ms-1 rounded-pill">
-                    <%= render 'home/cart_header' %>
+                      <%= render 'home/cart_header' %>
                     </span>
-                    <% end %>
-                  </button>
-                </li>
-                <% if user_signed_in? %>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <%= current_user.user_name %>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <%= link_to "Trang cá nhân",  edit_user_registration_path, class:"dropdown-item" %>
-                    <div class="dropdown-divider"></div>
-                   <%= link_to "Đăng xuất", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
-                  </div>
-                </li>
-                <% else %>
-                <li class="nav-item">
-                  <%= link_to "Đăng kí", new_user_registration_path, class:"nav-link active" %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "Đăng nhập",  new_user_session_path, class:"nav-link active" %>
-                </li>
+                  <% end %>
+                <% else %> 
+                  <i class="fa fa-shopping-cart"></i>
                 <% end %>
-              </ul>
-            </div>
+                </button>
+              </li>
+              <% if user_signed_in? %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <%= current_user.user_name %>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to "Trang cá nhân",  edit_user_registration_path, class:"dropdown-item" %>
+                  <%= link_to "Lịch sử  order",  orders_path, class:"dropdown-item" %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "Đăng xuất", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+                </div>
+              </li>
+              <% else %>
+              <li class="nav-item">
+                <%= link_to "Đăng kí", new_user_registration_path, class:"nav-link active" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Đăng nhập",  new_user_session_path, class:"nav-link active" %>
+              </li>
+              <% end %>
+            </ul>
           </div>
-        </nav>
+        </div>
       </div>
-    </div>
+    </nav>
   </div>
-</header>
+</div>
+<% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>

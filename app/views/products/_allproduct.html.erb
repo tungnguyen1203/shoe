@@ -48,9 +48,9 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
-                <a class="dropdown-item" href="#">Giày Thể thao</a>
-                <a class="dropdown-item" href="#">Giày abc</a>
-                <a class="dropdown-item" href="#">Giày xyz</a>
+              <% @categories.each do |category| %>
+                <a class="dropdown-item" href="#"><%= category.name %></a>
+              <% end %>
               </li>
             </ul>
           </div>
@@ -75,7 +75,7 @@
                   <h5 class="fw-bolder"> <%= link_to product.name, product, class:"font-weight-bold" %></h5>
                   <!-- Product price-->
                   <span class="text-muted text-decoration-line-through"></span>
-                  <%=  product.price %>
+                  <%=  product.price %>đ
                 </div>
               </div>
               <!-- Product actions-->

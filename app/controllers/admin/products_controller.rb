@@ -4,6 +4,7 @@ class Admin::ProductsController < ApplicationController
     @products = Product.all
     
   end
+
   def new
     @categories = Category.all
     @product = Product.new
@@ -11,13 +12,12 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @categories = Category.all
-    
     @product = Product.new(product_params)
     if @product.save
-      flash[:success] = "Object successfully created"
+      flash[:success] = "Đã thêm!"
       redirect_to new_admin_product_path
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "Sản phẩm chưa được tạo!"
       render 'new'
     end
   end
@@ -25,7 +25,6 @@ class Admin::ProductsController < ApplicationController
   def edit
     @categories = Category.all
     @product = Product.find(params[:id])
-    # redirect_to new_admin_category_path
   end
   
   def update
@@ -52,7 +51,9 @@ class Admin::ProductsController < ApplicationController
   end
   
   private
+
     def product_params
       params.require(:product).permit(:name,:image, :price, :color, :size, :description, :category_id)
     end
+    
 end

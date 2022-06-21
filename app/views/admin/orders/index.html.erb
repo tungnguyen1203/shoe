@@ -1,3 +1,5 @@
+<% provide(:title, "Danh sách đơn hàng") %>
+
 <div class="container-fluid sb-nav-fixed">
   <%= render 'admin/dashboard/top_nav' %>
   <div id="layoutSidenav">
@@ -5,7 +7,6 @@
     <div id="layoutSidenav_content">
       <main>
         <div class="container-fluid px-4">
-          
           <div class="row">
             <div class="col">
               <table class="table">
@@ -20,13 +21,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @orders.each do |order| %>
-                  
-                  <tr>
-                    <th scope="row"></th>
-                   
+                  <% @orders.each_with_index do |order, index| %>
+                    <th scope="row"> <%= index +1 %></th>
                     <td><%= order.order_details.first.product.name %></td>
-                    <td><%= order.order_details.first.product.price %></td>
+                    <td><%= order.order_details.first.price %></td>
                      <td><%= order.order_details.first.quantity %></td>
                     <td><%= order.address %></td>
                     <td><%= order.user.user_name %></td>

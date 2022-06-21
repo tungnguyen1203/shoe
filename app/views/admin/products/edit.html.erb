@@ -9,7 +9,7 @@
           <div class="alert alert-<%= message_type %>"><%= message %></div>
           <% end %>
           <div class="row mt-4 ">
-            
+
             <%= form_for  @product,url: admin_product_path,html:{class:"d-flex"}  do |f| %>
             <div class="col-6">
               <div class="mb-3">
@@ -41,8 +41,10 @@
                 <%= f.select(:category_id, @categories.pluck(:name, :id), {}, {:class => 'selectpicker form-select'}) %>
               </div>
               <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Chọn Hình ảnh</label>
-                <%= f.file_field :image  %>
+                <label id="image-label" class="image-hover" for="article_thumbnail">
+                  <%= image_tag "logo.png", id: "thumbnail-img", size: "200x200" %>
+                </label>
+                <%= f.file_field :image, onchange:"loadFile(event)"  %>
               </div>
             </div>
             <% end %>
@@ -53,3 +55,12 @@
     </div>
   </div>
 </div>
+<script>
+  var loadFile = function (event) {
+    var output = document.getElementById('thumbnail-img');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function () {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+</script>
