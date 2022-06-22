@@ -20,11 +20,17 @@ class Admin::CategoriesController < ApplicationController
   def destroy
     @category =Category.find(params[:id])
     if @category.destroy
-      flash[:success] = 'Đã xóa!'
-      redirect_to new_admin_category_path
-    else
-      flash[:error] = 'Something went wrong'
-      redirect_to new_admin_category_path
+      
+      render 'destroy'
+      respond_to do |format|
+        format.html {redirect_to(new_admin_category_path)  }
+        format.js
+      end
+    #   flash[:success] = 'Đã xóa!'
+    #   redirect_to new_admin_category_path
+    # else
+    #   flash[:error] = 'Something went wrong'
+    #   redirect_to new_admin_category_path
     end
   end
   

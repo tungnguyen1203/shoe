@@ -1,0 +1,36 @@
+<div class="container ">
+  <div class="row mt-2" style="font-weight:bold">
+    <div class="col-6">
+      <p>Code: <%= list_order.id %> </p>
+      <p>Customer: <%= list_order.user.user_name %> </p>
+      <p>Address:<%= list_order.address %> </p>
+    </div> 
+    <div class="col-6">
+      <p>Total: <%= list_order.sub_total %></p>
+      <p>Date: <%= list_order.created_at.to_date %></p>
+      <p>Status: <%= list_order.status %>
+        <!-- Button trigger modal -->
+       <%=link_to  edit_admin_order_path(list_order), class:"btn btn-outline-warning" do %>
+          <i class="fa-solid fa-pen-to-square"></i>
+        <% end %>
+
+      </p>
+    </div> 
+    </div>
+    <div class="row">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <td scope="col">Name</td>
+            <td scope="col">Price</td>
+            <td scope="col">Quantity</td>
+            <td scope="col">total price</td>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "orders/order_detail",  collection: list_order.order_details %>
+        </tbody>
+      </table>
+    </div>
+    <hr>
+</div>

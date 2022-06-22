@@ -44,7 +44,7 @@ class OrderDetailsController < ApplicationController
     
   #   @order_detail.save
  
-    redirect_to cart_path(@current_cart)
+    redirect_to carts_path
     # respond_to do |format|
     #   format.html { redirect_to root_path}
     #   format.js   { render :layout => false }
@@ -55,7 +55,7 @@ class OrderDetailsController < ApplicationController
     @order_detail = OrderDetail.find(params[:id])
     @order_detail.quantity +=1
     @order_detail.save
-    redirect_to cart_path(current_cart)
+    redirect_to carts_path
   end
 
   def reduce_quantity
@@ -64,7 +64,7 @@ class OrderDetailsController < ApplicationController
       @order_detail.quantity -= 1
     end
     @order_detail.save
-    redirect_to cart_path(current_cart)
+    redirect_to carts_path
   end
 
   def destroy
@@ -72,7 +72,7 @@ class OrderDetailsController < ApplicationController
     @order_detail = OrderDetail.find(params[:id])
     @order_detail.destroy
 
-    redirect_to cart_path(current_cart)
+    redirect_to carts_path
   end
   private
 

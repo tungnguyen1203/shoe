@@ -1,0 +1,30 @@
+<div class="container-fluid sb-nav-fixed">
+  <%= render 'admin/dashboard/top_nav' %>
+  <div id="layoutSidenav">
+    <%= render 'admin/dashboard/layout_side_nav' %>
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          
+          <%= simple_form_for @order,url: admin_order_path  do |f| %>
+            <div class="d-flex">
+              <div class="col-4 me-2">
+                <div class="mb-3">
+                <%= f.input :Status do %>
+                  <%= f.select(:status,[ "Active", "Reject","Delivered"],{}, {:class => 'selectpicker form-select'})  %>
+                <% end %>
+                </div>
+                <%= f.button :submit, "Save", class: "btn btn-primary" %>
+              </div>
+              <div class="col-4 me-2">
+                <div class="mb-3">
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </main>
+      <%= render 'admin/dashboard/footer' %>
+    </div>
+  </div>
+</div>

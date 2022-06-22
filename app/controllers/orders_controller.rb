@@ -1,18 +1,16 @@
 class OrdersController < ApplicationController
   def index
     @q = Product.ransack(params[:q])
-    @orders = Order.order("updated_at desc")
+    
+    @orders = current_user.orders.includes(:order_details ,order_details: :product)
+    
     if current_user.present?
       @current_cart = current_user.cart
     else
       @current_cart = Cart.new
     end
   end
-  def show
-
-    binding.pry
-    @order= Order.where(params[:id])
-  end
+  
 
   def new
     if current_user.present?
@@ -27,14 +25,6 @@ class OrdersController < ApplicationController
     @user = @current_user
   end
   
-  # def create
-  #   @order.save
-    
- 
-    
-  #   redirect_to  root_path
-  # end
-
   def create
     @q = Product.ransack(params[:q])
     if current_user.present?
@@ -57,22 +47,17 @@ class OrdersController < ApplicationController
     })
 
     if @order.save
-      flash[:success] = "Thanh Toán Thành Công!"
+      flash[:notice] = "Thanh Toán Thành Công!"
     #   Cart.destroy(session[:cart_id])
     #  session[:cart_id] = nil
       redirect_to root_path
     else
-      flash[:error] = "Thanh toán không thành công!"
-      render "new"
-      # redirect_to root_path
+      flash[:alert] = "Thanh toán không thành công!"
+      render :new
+     
     end
   end
-  def change
-    # Stripe.api_key = 'sk_test_51L8JPcIekHnUbT8KxiVL2yQxi5MpNbBJUTNoHNV7h'
-    # token = params[ :stripeToken]
-    
-  end
-  
+ 
   private
 
     def order_params

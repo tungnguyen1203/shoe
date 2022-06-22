@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  
   def index
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).page(params[:page]).per(6)
@@ -16,5 +15,4 @@ class HomeController < ApplicationController
   def contact
     @q = Product.ransack(params[:q])
   end
-  
 end

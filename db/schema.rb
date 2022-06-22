@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2022_06_20_065527) do
 
   create_table "orders", force: :cascade do |t|
     t.string "address"
+    t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"

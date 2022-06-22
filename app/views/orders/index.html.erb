@@ -1,31 +1,4 @@
 <% provide(:title, "Lịch sử order") %>
 <%= render "home/header" %>
-  <table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Đơn hàng</th>
-      <th scope="col">Tên sản phẩm</th>
-      <th scope="col">Loại sản phẩm</th>
-      <th scope="col">Giá x Số lượng</th>
-      <th scope="col">Tổng tiền</th>
-      <th scope="col">Địa chỉ nhận hàng</th>
-      <th scope="col">Ngày đặt hàng</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% current_user.orders.each_with_index do |order, index| %>
-    <% order.order_details.each do |order_detail| %>
-      <tr>
-        <th scope="row"><%= index +1 %></th>
-        <td><%= order_detail.product.name %></td>
-        <td><%= order_detail.product.category.name %></td>
-        <td><%= order_detail.price%> x <%= order_detail.quantity%></td>
-        <td><%= order.sub_total%></td>
-        <td><%= order.address %></td>
-        <td><%= order.updated_at.to_date %></td>
-      </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: "orders/order",  collection: @orders %>
 <%= render "home/footer" %>

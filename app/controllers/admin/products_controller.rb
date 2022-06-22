@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-
+  
   def index
     @products = Product.all
     
@@ -17,8 +17,7 @@ class Admin::ProductsController < ApplicationController
       flash[:success] = "Đã thêm!"
       redirect_to new_admin_product_path
     else
-      flash[:error] = "Sản phẩm chưa được tạo!"
-      render 'new'
+      render :new
     end
   end
 
@@ -28,10 +27,11 @@ class Admin::ProductsController < ApplicationController
   end
   
   def update
+    @categories = Category.all
     @product = Product.find(params[:id])
       if @product.update(product_params)
         flash[:success] = "Đã chỉnh sửa!"
-        sleep(2)
+        
         redirect_to admin_products_path
       else
         flash[:error] = "Something went wrong"

@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.6'
 
+gem 'simple_form'
 gem 'mini_magick'
 gem 'carrierwave', '~> 2.0'
 gem 'stripe', '~> 6.2'

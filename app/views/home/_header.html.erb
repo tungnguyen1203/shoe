@@ -24,15 +24,13 @@
             <ul class="navbar-nav">
               <%= render 'products/search'%>
               <li class="nav-item">
-                <button class="btn btn-outline-light" href="#" style="background-color:#F9593F">
-              
+                <button class="btn btn-outline-light " href="#" style="background-color:#F9593F">
+                <% if current_user.present? %>
                 
-                <% if @current_user.present? %>
-                  <%= link_to cart_path(@current_cart),  {:style=>'color:#FFFFFF;', :class => "css_class"}   do %>
+                  <%= link_to carts_path,  {:style=>'color:#FFFFFF;', :class => "css_class"}   do %>
                     <i class="fa fa-shopping-cart"></i>
-
                     <span class="badge text-white ms-1 rounded-pill">
-                      <%= render 'home/cart_header' %>
+                      <%= @current_cart&.order_details&.size %>
                     </span>
                   <% end %>
                 <% else %> 
@@ -68,6 +66,9 @@
     </nav>
   </div>
 </div>
-<% flash.each do |message_type, message| %>
-    <div class="alert alert-<%= message_type %>"><%= message %></div>
-    <% end %>
+<% if notice %>
+  <p class="alert alert-success"> <%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"> <%= alert %></p>
+<% end %>
